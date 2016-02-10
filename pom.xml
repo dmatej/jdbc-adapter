@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jdbc</groupId>
+  <artifactId>jdbc-adapter</artifactId>
+  <version>4.2.0-SNAPSHOT</version>
+  <name>JDBC adapter</name>
+
+  <prerequisites>
+    <maven>3.2.0</maven>
+  </prerequisites>
+
+  <url>https://github.com/dmatej/jdbc-adapter</url>
+
+  <scm>
+    <url>https://github.com/dmatej/jdbc-adapter/</url>
+    <connection>scm:git:git@github.com:dmatej/jdbc-adapter.git</connection>
+    <developerConnection>scm:git:git@github.com:dmatej/jdbc-adapter.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>David Matějček</name>
+      <email>dmatej@seznam.cz</email>
+      <timezone>CET</timezone>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.informix.jdbc</groupId>
+      <artifactId>ifxjdbcx</artifactId>
+      <version>4.10.JC6</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+</project>
