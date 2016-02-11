@@ -1,12 +1,9 @@
 package org.jdbc.adapter.ifx;
 
-import java.sql.Date;
+import static org.jdbc.adapter.conversion.DefaultTypeConversions.toJdbc30Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.jdbc.adapter.iface.ConnectionWrapper;
 import org.jdbc.adapter.iface.ResultSetWrapper;
@@ -33,28 +30,18 @@ public class Ifx42Statement extends Jdbc42Statement {
 
   @Override
   public void setObject(int index, Object val) throws SQLException {
-    getPreparedStatement().setObject(index, fixType(val));
+    getPreparedStatement().setObject(index, toJdbc30Type(val));
   }
 
 
   @Override
   public void setObject(int index, Object val, int targetSqlType) throws SQLException {
-    getPreparedStatement().setObject(index, fixType(val), targetSqlType);
+    getPreparedStatement().setObject(index, toJdbc30Type(val), targetSqlType);
   }
 
 
   @Override
   public void setObject(int index, Object val, int targetSqlType, int scale) throws SQLException {
-    getPreparedStatement().setObject(index, fixType(val), targetSqlType, scale);
-  }
-
-
-  private Object fixType(final Object value) {
-    if (value instanceof LocalDateTime) {
-      return Timestamp.valueOf((LocalDateTime) value);
-    } else if (value instanceof LocalDate) {
-      return Date.valueOf((LocalDate) value);
-    }
-    return value;
+    getPreparedStatement().setObject(index, toJdbc30Type(val), targetSqlType, scale);
   }
 }
