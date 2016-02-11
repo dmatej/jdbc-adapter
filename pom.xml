@@ -8,6 +8,7 @@
 
   <prerequisites>
     <maven>3.2.0</maven>
+
   </prerequisites>
 
   <url>https://github.com/dmatej/jdbc-adapter</url>
@@ -37,6 +38,18 @@
       <groupId>com.informix.jdbc</groupId>
       <artifactId>ifxjdbcx</artifactId>
       <version>4.10.JC6</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derby</artifactId>
+      <version>10.12.1.1</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbytools</artifactId>
+      <version>10.12.1.1</version>
       <optional>true</optional>
     </dependency>
   </dependencies>
