@@ -120,7 +120,7 @@ public abstract class Jdbc42DataSource<T extends DataSource> implements DataSour
 
   @Override
   public boolean isWrapperFor(final Class<?> iface) throws SQLException {
-    return iface.isInstance(this) || iface.isInstance(this.datasource);
+    return iface.isInstance(this) || iface.isInstance(this.datasource) || this.datasource.isWrapperFor(iface);
   }
 
 
@@ -128,6 +128,9 @@ public abstract class Jdbc42DataSource<T extends DataSource> implements DataSour
   public <T> T unwrap(final Class<T> iface) throws SQLException {
     if (iface.isInstance(this)) {
       return iface.cast(this);
+    }
+    if (iface.isInstance(this.datasource)) {
+      return iface.cast(this.datasource);
     }
     return iface.cast(this.datasource);
   }

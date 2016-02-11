@@ -107,7 +107,7 @@ public class Jdbc42Statement implements StatementWrapper {
 
   @Override
   public boolean isWrapperFor(final Class<?> iface) throws SQLException {
-    return iface.isInstance(this) || this.statement.isWrapperFor(iface);
+    return iface.isInstance(this) || iface.isInstance(this.statement) || this.statement.isWrapperFor(iface);
   }
 
 
@@ -115,6 +115,9 @@ public class Jdbc42Statement implements StatementWrapper {
   public <T> T unwrap(final Class<T> iface) throws SQLException {
     if (iface.isInstance(this)) {
       return iface.cast(this);
+    }
+    if (iface.isInstance(this.statement)) {
+      return iface.cast(this.statement);
     }
     return this.statement.unwrap(iface);
   }

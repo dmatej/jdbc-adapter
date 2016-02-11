@@ -74,7 +74,7 @@ public class Jdbc42ResultSet implements ResultSetWrapper {
 
   @Override
   public boolean isWrapperFor(final Class<?> iface) throws SQLException {
-    return iface.isInstance(this) || this.resultSet.isWrapperFor(iface);
+    return iface.isInstance(this) || iface.isInstance(this.resultSet) || this.resultSet.isWrapperFor(iface);
   }
 
 
@@ -82,6 +82,9 @@ public class Jdbc42ResultSet implements ResultSetWrapper {
   public <T> T unwrap(final Class<T> iface) throws SQLException {
     if (iface.isInstance(this)) {
       return iface.cast(this);
+    }
+    if (iface.isInstance(this.resultSet)) {
+      return iface.cast(this.resultSet);
     }
     return this.resultSet.unwrap(iface);
   }

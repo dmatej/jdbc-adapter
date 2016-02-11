@@ -61,7 +61,7 @@ public class Jdbc42Connection implements ConnectionWrapper {
 
   @Override
   public boolean isWrapperFor(final Class<?> iface) throws SQLException {
-    return iface.isInstance(this) || this.connection.isWrapperFor(iface);
+    return iface.isInstance(this) || iface.isInstance(this.connection) || this.connection.isWrapperFor(iface);
   }
 
 
@@ -69,6 +69,9 @@ public class Jdbc42Connection implements ConnectionWrapper {
   public <T> T unwrap(final Class<T> iface) throws SQLException {
     if (iface.isInstance(this)) {
       return iface.cast(this);
+    }
+    if (iface.isInstance(this.connection)) {
+      return iface.cast(this.connection);
     }
     return this.connection.unwrap(iface);
   }
