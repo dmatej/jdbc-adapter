@@ -135,23 +135,22 @@ public class Ifx42DataSource extends Jdbc42DataSource<IfxDataSource> {
 
 
   public Object getProp(String x) {
-    return null;
+    return this.datasource.getProp(x);
   }
 
 
   public void readProperties(InputStream x) throws IOException {
-
+    this.datasource.readProperties(x);
   }
 
 
   public String getDatabaseName() {
-
-    return null;
+    return this.datasource.getDatabaseName();
   }
 
 
   public void setDatabaseName(String x) {
-
+    this.datasource.setDatabaseName(x);
   }
 
 
@@ -264,13 +263,12 @@ public class Ifx42DataSource extends Jdbc42DataSource<IfxDataSource> {
 
 
   public String getIfxIFXHOST() {
-
-    return null;
+    return this.datasource.getIfxIFXHOST();
   }
 
 
   public void setIfxIFXHOST(String x) {
-
+    this.datasource.setIfxIFXHOST(x);
   }
 
 
@@ -915,7 +913,7 @@ public class Ifx42DataSource extends Jdbc42DataSource<IfxDataSource> {
 
 
   public void setIfxIFX_ISOLATION_LEVEL(String x) {
-
+    this.datasource.setIfxIFX_ISOLATION_LEVEL(x);
   }
 
 
