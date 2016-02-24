@@ -36,6 +36,12 @@
     </dependency>
     <dependency>
       <groupId>com.informix.jdbc</groupId>
+      <artifactId>ifxjdbc</artifactId>
+      <version>4.10.JC6</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.informix.jdbc</groupId>
       <artifactId>ifxjdbcx</artifactId>
       <version>4.10.JC6</version>
       <optional>true</optional>
