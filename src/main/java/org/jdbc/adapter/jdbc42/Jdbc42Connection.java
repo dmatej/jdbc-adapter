@@ -41,7 +41,7 @@ public class Jdbc42Connection implements ConnectionWrapper {
   /**
    * @return the wrapped connection;
    */
-  protected final Connection getConnection() {
+  protected Connection getConnection() {
     return this.connection;
   }
 
