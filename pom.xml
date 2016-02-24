@@ -18,6 +18,13 @@
     <connection>scm:git:git@github.com:dmatej/jdbc-adapter.git</connection>
     <developerConnection>scm:git:git@github.com:dmatej/jdbc-adapter.git</developerConnection>
   </scm>
+  <distributionManagement>
+    <repository>
+      <id>jdbc-adapter-distribution</id>
+      <name>CIS distribution repository</name>
+      <url>${jdbc-adapter.deploy.repo}</url>
+    </repository>
+  </distributionManagement>
 
   <developers>
     <developer>
