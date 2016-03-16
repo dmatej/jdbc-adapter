@@ -1,7 +1,6 @@
 package org.jdbc.adapter.version;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 
 /**
@@ -32,7 +31,9 @@ public enum JDBCVersion {
     } catch (final SQLFeatureNotSupportedException e) {
       // okay, driver does not support this feature, but still implements JDBC 4.1.
       return JDBC4_2;
-    } catch (final SQLException | AbstractMethodError e) {
+    } catch (final Exception | AbstractMethodError e) {
+      // WARNING: Some exceptions may be wrapped by reflection (Glassfish/Payara bug).
+      // Solution should be similar as in: https://github.com/payara/Payara/issues/216
       // nothing
     }
 
@@ -45,7 +46,9 @@ public enum JDBCVersion {
       return JDBC4;
     } catch (final SQLFeatureNotSupportedException e) {
       return JDBC4;
-    } catch (final SQLException | AbstractMethodError e) {
+    } catch (final Exception | AbstractMethodError e) {
+      // WARNING: Some exceptions may be wrapped by reflection (Glassfish/Payara bug).
+      // Solution should be similar as in: https://github.com/payara/Payara/issues/216
       return JDBC3;
     }
   }
