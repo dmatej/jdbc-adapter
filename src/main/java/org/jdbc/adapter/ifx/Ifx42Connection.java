@@ -1,8 +1,10 @@
 package org.jdbc.adapter.ifx;
 
 import java.sql.Connection;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.concurrent.Executor;
 import java.util.logging.Logger;
 
@@ -15,8 +17,14 @@ import com.informix.jdbc.IfmxConnection;
  * @author David Matějček
  */
 public class Ifx42Connection extends Jdbc42Connection {
-  private static final Logger LOG = Logger.getLogger(Ifx42Connection.class.getName());
 
+  private static final Logger LOG = Logger.getLogger(Ifx42Connection.class.getName());
+  private Properties clientInfo;
+
+
+  /**
+   * @param connection instance of {@link IfmxConnection}
+   */
   public Ifx42Connection(final Connection connection) {
     super(connection);
   }
@@ -36,11 +44,68 @@ public class Ifx42Connection extends Jdbc42Connection {
 
 
   /**
-   * @return the wrapped connection;
+   * @return the wrapped {@link IfmxConnection}.
    */
   @Override
   protected final IfmxConnection getConnection() {
     return IfmxConnection.class.cast(getConnection());
+  }
+
+
+  /**
+   * This method is not supported by IFXJDBC driver, but wrapper uses local Properties to give some
+   * primitive support.
+   *
+   * @param properties - source properties to be copied into internal copy.
+   */
+  @Override
+  public void setClientInfo(final Properties properties) throws SQLClientInfoException {
+    if (properties == null) {
+      this.clientInfo = null;
+      return;
+    }
+    this.clientInfo = new Properties();
+    this.clientInfo.putAll(properties);
+  }
+
+
+  /**
+   * This method is not supported by IFXJDBC driver, but wrapper uses local Properties to give some
+   * primitive support.
+   */
+  @Override
+  public void setClientInfo(final String name, final String value) throws SQLClientInfoException {
+    if (this.clientInfo == null) {
+      this.clientInfo = new Properties();
+    }
+    this.clientInfo.setProperty(name, value);
+  }
+
+
+  /**
+   * This method is not supported by IFXJDBC driver, but wrapper uses local Properties to give some
+   * primitive support.
+   *
+   * @return the copy of the internal properties. Never null.
+   */
+  @Override
+  public Properties getClientInfo() throws SQLException {
+    if (this.clientInfo == null) {
+      return new Properties();
+    }
+    final Properties toReturn = new Properties();
+    toReturn.putAll(this.clientInfo);
+    return toReturn;
+  }
+
+
+  /**
+   * This method is not supported by IFXJDBC driver, but wrapper uses local Properties to give some
+   * primitive support.
+   */
+  @Override
+  public String getClientInfo(final String name) throws SQLException {
+    return this.clientInfo == null ? null : this.clientInfo.getProperty(name);
   }
 
 
