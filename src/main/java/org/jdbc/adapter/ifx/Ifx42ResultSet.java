@@ -13,5 +13,4 @@ public class Ifx42ResultSet extends Jdbc42ResultSet {
   public Ifx42ResultSet(final ResultSet resultSet, final StatementWrapper parentStatement) {
     super(resultSet, parentStatement);
   }
-
 }

@@ -215,98 +215,84 @@ public class Jdbc42Statement implements StatementWrapper {
 
   @Override
   public int getFetchDirection() throws SQLException {
-
     return this.statement.getFetchDirection();
   }
 
 
   @Override
   public int getFetchSize() throws SQLException {
-
     return this.statement.getFetchSize();
   }
 
 
   @Override
   public ResultSetWrapper getGeneratedKeys() throws SQLException {
-
     return wrap(this.statement.getGeneratedKeys());
   }
 
 
   @Override
   public int getMaxFieldSize() throws SQLException {
-
     return this.statement.getMaxFieldSize();
   }
 
 
   @Override
   public int getMaxRows() throws SQLException {
-
     return this.statement.getMaxRows();
   }
 
 
   @Override
   public boolean getMoreResults() throws SQLException {// NOPMD
-
     return this.statement.getMoreResults();
   }
 
 
   @Override
   public boolean getMoreResults(int current) throws SQLException {
-
     return this.statement.getMoreResults(current);
   }
 
 
   @Override
   public int getQueryTimeout() throws SQLException {
-
     return this.statement.getQueryTimeout();
   }
 
 
   @Override
   public ResultSet getResultSet() throws SQLException {
-
     return wrap(this.statement.getResultSet());
   }
 
 
   @Override
   public int getResultSetConcurrency() throws SQLException {
-
     return this.statement.getResultSetConcurrency();
   }
 
 
   @Override
   public int getResultSetHoldability() throws SQLException {
-
     return this.statement.getResultSetHoldability();
   }
 
 
   @Override
   public int getResultSetType() throws SQLException {
-
     return this.statement.getResultSetType();
   }
 
 
   @Override
   public int getUpdateCount() throws SQLException {
-
     return this.statement.getUpdateCount();
   }
 
 
   @Override
   public SQLWarning getWarnings() throws SQLException {
-
     return this.statement.getWarnings();
   }
 

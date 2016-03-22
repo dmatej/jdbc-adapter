@@ -4,6 +4,7 @@
 package org.jdbc.adapter.iface;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.Statement;
 
 /**
@@ -19,4 +20,14 @@ public interface ConnectionWrapper extends Connection {
    * @return a {@link StatementWrapper}
    */
   StatementWrapper wrap(Statement statement);
+
+
+  /**
+   * Wraps a {@link DatabaseMetaData} instance with some {@link DatabaseMetaDataWrapper}
+   * implementation.
+   *
+   * @param metaData
+   * @return a {@link DatabaseMetaDataWrapper}
+   */
+  DatabaseMetaDataWrapper wrap(DatabaseMetaData metaData);
 }

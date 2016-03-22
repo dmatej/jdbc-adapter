@@ -1,6 +1,7 @@
 package org.jdbc.adapter.ifx;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,6 +9,7 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 import java.util.logging.Logger;
 
+import org.jdbc.adapter.iface.DatabaseMetaDataWrapper;
 import org.jdbc.adapter.iface.StatementWrapper;
 import org.jdbc.adapter.jdbc42.Jdbc42Connection;
 
@@ -79,6 +81,20 @@ public class Ifx42Connection extends Jdbc42Connection {
       this.clientInfo = new Properties();
     }
     this.clientInfo.setProperty(name, value);
+  }
+
+
+  /**
+   * @param metaData
+   * @return a {@link DatabaseMetaDataWrapper} instance.
+   */
+  @Override
+  public DatabaseMetaDataWrapper wrap(final DatabaseMetaData metaData) {
+    LOG.entering(getClass().getSimpleName(), "wrap", metaData);
+    if (metaData == null) {
+      return null;
+    }
+    return new Ifx42DatabaseMetaData(metaData, this);
   }
 
 

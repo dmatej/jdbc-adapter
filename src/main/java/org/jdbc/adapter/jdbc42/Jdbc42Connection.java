@@ -19,6 +19,7 @@ import java.util.concurrent.Executor;
 import java.util.logging.Logger;
 
 import org.jdbc.adapter.iface.ConnectionWrapper;
+import org.jdbc.adapter.iface.DatabaseMetaDataWrapper;
 import org.jdbc.adapter.iface.StatementWrapper;
 
 
@@ -52,10 +53,25 @@ public class Jdbc42Connection implements ConnectionWrapper {
    */
   @Override
   public StatementWrapper wrap(final Statement statement) {
+    LOG.entering(getClass().getSimpleName(), "wrap", statement);
     if (statement == null) {
       return null;
     }
     return new Jdbc42Statement(statement, this);
+  }
+
+
+  /**
+   * @param metaData
+   * @return a {@link DatabaseMetaDataWrapper} instance.
+   */
+  @Override
+  public DatabaseMetaDataWrapper wrap(final DatabaseMetaData metaData) {
+    LOG.entering(getClass().getSimpleName(), "wrap", metaData);
+    if (metaData == null) {
+      return null;
+    }
+    return new Jdbc42DatabaseMetaData(metaData, this);
   }
 
 
@@ -109,7 +125,7 @@ public class Jdbc42Connection implements ConnectionWrapper {
 
   @Override
   public DatabaseMetaData getMetaData() throws SQLException {
-    return connection.getMetaData();
+    return wrap(connection.getMetaData());
   }
 
 
